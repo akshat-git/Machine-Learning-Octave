@@ -1,7 +1,0 @@
-x = [1 1;1 2;1 3]
-y = [1; 2; 3]
-thetamat = [0; 0.5]
-
-function cost = J (thetamat,x,y)
-  cost = sum(((x*thetamat)-y).^2)/(2*m)
-endfunction
