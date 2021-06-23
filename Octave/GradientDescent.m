@@ -11,7 +11,7 @@ global y = ex1data2(:,3);
 x0 = x(:,1);
 x1 = x(:,2);
 
-theta = ones((n+1),1)*50;
+theta = ones((n+1),1)*100;
 
 x1avg = mean(x1);
 x1 = (x1.-(range(x1)/2))/x1avg;
@@ -55,8 +55,8 @@ for i = 1:length(thetamat)
 	printf(["\tTheta " int2str(i-1) ": " num2str(thetamat(i)) " \n"])
 end
 
-theta0_vals = linspace(-10, 10, 100);
-theta1_vals = linspace(-1, 4, 100);
+theta0_vals = linspace(theta(1)*0.5, theta(1)*1.5, 100);
+theta1_vals = linspace(theta(2)*0.5, theta(2)*1.5, 100);
 
 % initialize J_vals to a matrix of 0's
 J_vals = zeros(length(theta0_vals), length(theta1_vals));
@@ -80,13 +80,13 @@ printf(["\n\t" int2str(CommaFormat(length(iterations(:,1)))) " ITERATIONS COMPLE
 
 xaxis = [ones(length(y),1) linspace(0,max(x(:,2)),length(y))'];
 
-figure(1); plot(iterations(:,1),iterations(:,2),'r');
+figure(1); %plot(iterations(:,1),iterations(:,2),'r');
 close;
 
-figure(2); scatter(x(:,2:(n+1)),y,'g','c','filled'), hold on, plot(xaxis,xaxis*theta,'b');
+figure(2); %scatter(x(:,2:(n+1)),y,'g','c','filled'), hold on, plot(xaxis,xaxis*theta,'b');
 close;
 
-figure(3); surf(theta0_vals, theta1_vals, J_vals)
+figure(3); %surf(theta0_vals, theta1_vals, J_vals)
 close;
 
 clf;
@@ -111,10 +111,12 @@ title("Line of Best Fit")
 set(gca,'box','on');
 
 subplot(1,3,3,"position",get(0,"screensize"))
-bowl = surf(theta0_vals, theta1_vals, J_vals)
+bowl = surfc(theta0_vals, theta1_vals, J_vals)
 hold on;
 xlabel('\theta_0'); ylabel('\theta_1');
 axis ("square");
 title("Cost Function Minimization")
 set(gca,'box','on');
+pos = get(0,"screensize")
+set(gcf, 'Position', [0 -115 pos(:,3:4)]);
 
