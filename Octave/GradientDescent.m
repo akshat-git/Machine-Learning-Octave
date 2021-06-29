@@ -5,13 +5,13 @@ global m = size(ex1data2,1);
 global n = 1%size(ex1data2,2)-1;
 onecol = ones(m,1);
 x = ex1data2(:,1:n);
-x = [onecol x];
+x = [onecol x]
 global y = ex1data2(:,3);
 
 x0 = x(:,1);
 x1 = x(:,2);
 
-theta = ones((n+1),1)*100;
+theta = ones((n+1),1)*50;
 
 x1avg = mean(x1);
 x1 = (x1.-(range(x1)/2))/x1avg;
@@ -35,14 +35,12 @@ temp = ones((n+1),1);
 iterations = ones(1,2);
 change = 100;
 i = 1;
-maxim = (J(theta)*92/100)/100
 while change>1
   for j = 1:(n+1)
     temp(j) = theta(j)-step(theta,alpha,j-1);
   end
-  change = J(theta)-J(temp);
-  disp([int2str(floor((10000/92*maxim-J(temp))/maxim)) "% complete"])
-  i = i+1;
+  change = J(theta)-J(temp)
+  i = i+1
   iterations = [iterations;i J(temp)];
   for j = 1:(n+1)
     theta(j) = temp(j);
@@ -93,17 +91,16 @@ clf;
 
 subplot(1,3,1,"position",get(0,"screensize"))
 iterationgraph = plot(iterations(:,1),iterations(:,2),'r');
-print -dpng 'MinimizationGradientDescent.png'
 hold on;
 axis ("square");
 xlabel('Iterations');
 ylabel('Cost Function');
-title("Cost Function Minimization")
+title("Cost Function Iteration")
 set(gca,'box','on');
 
 subplot(1,3,2,"position",get(0,"screensize"))
 regressionscat = scatter(x(:,2:(n+1)),y,15,'g','filled'), hold on, regressionlin = plot(xaxis(:,2:(n+1)),xaxis*theta,'b')
-print -dpng 'RegressionScatterPlot.png'
+
 axis ("square");
 xlabel('House Size');
 ylabel('House Price');
@@ -119,4 +116,7 @@ title("Cost Function Minimization")
 set(gca,'box','on');
 pos = get(0,"screensize")
 set(gcf, 'Position', [0 -115 pos(:,3:4)]);
+
+
+print -dpng 'LinearRegressionAndGradientDescent.png'
 

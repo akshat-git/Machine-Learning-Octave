@@ -8,15 +8,14 @@ x = ex1data2(:,1:n)
 x = [onecol x];
 global y = ex1data2(:,3);
 
-x0 = x(:,1);
-x1 = x(:,2);
 
 theta = ones((n+1),1)*50;
 
-x1avg = mean(x1);
-x1 = (x1.-(range(x1)/2))/x1avg;
+for i = 1:n
+  x(:,i+1) = (x(:,i+1).-(range(x(:,i+1))/2))/mean(x(:,i+1));
+end
 
-global x = [x0 x1];
+global x = [x];
 
 function change = step (theta, a, xnum)
   global x;
