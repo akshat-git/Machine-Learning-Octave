@@ -27,13 +27,13 @@ end
 J =-1*(sum(diff))/m;
 
 
-error = 0
+error = 0;
 for j = 1:size(grad)
   for i = 1:m
-    error = error+(sigmoid(X(i,:)*theta)-y(i))*X(i,j)
+    error = error+(sigmoid(X(i,:)*theta)-y(i))*X(i,j);
   end
-  grad(j) = 1/m*error
-  error = 0
+  grad(j) = 1/m*error;
+  error = 0;
 end
 
 
