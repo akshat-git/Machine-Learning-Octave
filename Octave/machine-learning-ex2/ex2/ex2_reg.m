@@ -3,7 +3,8 @@ warning('off')
 %% Initialization
 
 data = load('ex2data2.txt');
-X = data(:, [1, 2]); y = data(:, 3);
+X = data(:, [1, 2]); 
+y = data(:, 3);
 plotData(X, y);
 hold on;
 xlabel('Microchip Test 1')
@@ -42,7 +43,7 @@ test_theta = ones(size(X,2),1);
 fprintf('\nCost at test theta (with lambda = 10): %f\n', cost);
 fprintf('Expected cost (approx): 3.16\n');
 fprintf('Gradient at test theta - first five values only:\n');
-fprintf(' %f \n', grad(1:5));
+fprintf(' %f \n', grad);
 fprintf('Expected gradients (approx) - first five values only:\n');
 fprintf(' 0.3460\n 0.1614\n 0.1948\n 0.2269\n 0.0922\n');
 
@@ -71,7 +72,7 @@ options = optimset('GradObj', 'on', 'MaxIter', 400);
 
 % Optimize
 [theta, J, exit_flag] = ...
-	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options);
+	fminunc(@(t)(costFunctionReg(t, X, y, lambda)), initial_theta, options)
 
 % Plot Boundary
 plotDecisionBoundary(theta, X, y);
