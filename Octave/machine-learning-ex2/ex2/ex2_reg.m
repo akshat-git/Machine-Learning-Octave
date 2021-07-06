@@ -19,7 +19,7 @@ X = mapFeature(X(:,1), X(:,2));
 initial_theta = zeros(size(X, 2), 1);
 
 % Set regularization parameter lambda to 1
-lambda = 1/1000;
+lambda = 1;
 
 % Compute and display initial cost and gradient for regularized logistic
 % regression

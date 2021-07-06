@@ -1,16 +1,16 @@
 function [J, grad] = costFunctionReg(theta, X, y, lambda)
   m = length(y); % number of training examples
-  theta
+  theta;
   J = 0;
   grad = zeros(size(theta));
 
-  diff = zeros(m,1)
+  diff = zeros(m,1);
   for i = 1:m
     diff(i) = sum([y(i)*log(sigmoid(X(i,:)*theta))+(1-y(i))*log(1-sigmoid(X(i,:)*theta))]);
   end
-  theta2j = 0
+  theta2j = 0;
   for j = 2:size(grad)
-    theta2j = theta2j+theta(j)**2
+    theta2j = theta2j+theta(j)**2;
   end
   J =(-1*(sum(diff))/m)+lambda*theta2j/(2*m);
 
@@ -27,8 +27,8 @@ function [J, grad] = costFunctionReg(theta, X, y, lambda)
     for i = 1:m
       error = error+(sigmoid(X(i,:)*theta)-y(i))*X(i,j);
     end
-    grad(j) = (1/m*error)+(lambda*(theta(j))/m)
+    grad(j) = (1/m*error)+(lambda*(theta(j))/m);
     error = 0;
   end
-  grad
+  grad;
 end
