@@ -1,3 +1,4 @@
+cd C:\03_DevTools\GitHub\Machine-Learning\Octave\NeuralNetworks
 clear ; close all; clc
 
 input_layer_size  = 400;  % 20x20 Input Images of Digits
