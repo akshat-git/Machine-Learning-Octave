@@ -96,17 +96,19 @@ Xcol = [ones(m,1) X];
 capdelta1 = zeros(size(Theta1));
 capdelta2 = zeros(size(Theta2));
 for t = 1:m
-  a = zeros(1,hidden_layer_size+1);
+  a = Xcol(t);
   h = zeros(1,num_labels);
   delta2 = zeros(hidden_layer_size+1,1);
   delta3 = zeros(num_labels,1);
   % STEP 1
   mapped = zeros(1,num_labels);
-  mapped(y(t)) = 1;
+  mapped(1,y(t)) = 1;
   % disp(size(X(i,:)))
 
-  z2 = [1 Xcol(t,:)*Theta1'];
-  a = sigmoid(z2);
+
+  % Add bias unit AFTER sigmoid 
+  z2 = Xcol(t,:)*Theta1';
+  a = [1 sigmoid(z2)];
   z3 = a*Theta2';
   h = sigmoid(z3);
 
@@ -116,7 +118,7 @@ for t = 1:m
   end
   
   % STEP 3
-  delta2 = (Theta2'*delta3).*sigmoidGradient(z2');
+  delta2 = (Theta2'*delta3).*sigmoidGradient([1; z2']);
 
 
   
